@@ -1,0 +1,156 @@
+.background {
+  background-image: asset-url("photos_1.jpg");
+  height: calc(100vh - 52px);
+  width: 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+h1{
+  font-size: 50px;
+  color: purple;
+}
+
+.background-2 {
+  background-image: asset-url("photos_2.jpg");
+  height: 50vh;
+  width: 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h2{
+  font-size: 100px;
+  color: black;
+}
+
+p{
+  font-size: 20px;
+  color: black;
+}
+
+.background-3 {
+  background-color: black;
+  height: 50vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.features-title  {
+  margin: 20px 10px;
+  flex: 0 0 280px;
+  color: orange;
+}
+
+.features-container {
+  margin: 50px 0;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+ max-width: 1200px;
+ margin: 50px auto;
+ justify-content: center;
+}
+
+.feature {
+  flex: 0 0 280px;
+  margin: 20px 10px;
+}
+
+@media all and (max-width: 1199px) {
+  .features {
+    max-width: 600px;
+  }
+}
+
+.gridphotos-class {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+ margin: 50px auto;
+ justify-content: space-around;
+
+}
+
+.photosbox{
+  flex: 0 0 300px;
+  margin: 0 0;
+  position: relative;
+}
+
+.photosbox:hover .invisible-layout {
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+.invisible-layout {
+  position: absolute;
+  top:0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+}
+
+.img_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: black;
+    opacity: 0.8;
+    color: white
+  }
+
+  @media all and (max-width: 1199px) {
+    .gridphotos-class {
+      flex: 0 0 50%;
+    }
+  }
+
+.short-underline {
+  width: 50px;
+  border-bottom: 2px solid orange;
+}
+
+.contact {
+  margin: 20px 10px;
+  flex: 0 0 280px;
+  color: orange;
+
+}
+
+.contact-information {
+  margin: auto;
+  flex: 0 0 280px;
+  color: black;
+
+}
+
+.information-feature {
+  flex: 0 0 280px;
+  margin: 20px 50px;
+
+}
+
+.information-images {
+  display: flex;
+  flex-wrap: wrap;
+ max-width: 1200px;
+ margin: 50px auto;
+ justify-content: center;
+
+
+}
