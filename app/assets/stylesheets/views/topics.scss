@@ -1,0 +1,27 @@
+.topic {
+
+
+  .topic_head{
+    font-size: 30px;
+    font-weight: 300;
+    font-family: monospace;
+  background-image: asset-url("photos_2.jpg");
+  }
+
+
+  .topic_big_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 20px;
+  }
+
+  .topic_individual {
+    flex: 0 0 300px;
+    width:300px;
+    position: relative;
+    border-style: solid;
+    border-color: black;
+  }
+}
