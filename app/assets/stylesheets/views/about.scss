@@ -1,0 +1,50 @@
+.about {
+  .aboutpage_background {
+    background-image: asset-url("photos_7.jpg");
+    height: calc(100vh - 52px);
+    width: 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .content {
+    font-size: 30 px;
+  }
+
+  .short-underline {
+    width: 100px;
+    border-bottom: 2px solid black;
+  }
+
+  .small_column_contact {
+    flex: 0 0 280px;
+    margin: 20px 10px;
+  }
+
+  .contact_bar {
+    display: flex;
+    flex-wrap: wrap;
+   max-width: 1200px;
+   margin: 50px auto;
+   justify-content: center;
+  }
+
+  .contact_container {
+    margin: 50px 0;
+  }
+
+  @media all and (max-width: 1199px) {
+    .aboutpage_background {
+      max-width: 800px;
+
+    .people_behind_this {
+      max-width: 500px
+    }
+  }
+  }
+
+}
