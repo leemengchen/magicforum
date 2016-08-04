@@ -1,0 +1,37 @@
+<div class="post">
+
+  <div class="big_header text-center">
+  <h1>Posts</h1>
+  </div>
+
+  <div class="post_big_container">
+    <% @posts.each do |post| %>
+      <div class="post_header text-center">
+        <h3><%= post.title %></h3>
+        <h5><% post.body %></h5>
+        <%= link_to post.title, post_path(post) %>
+      </div>
+  <% end %>
+  </div>
+
+  <%= form_for(@post, url: posts_path, html: { id: "post-create-form" }) do |f| %>
+    <h1 class="text-center">
+      Create Post
+    </h1>
+
+    <div class="form-group">
+      <h4> <%= f.label :title_field, "Title" %> </h4>
+      <%= f.text_field :title, required: true, id: "post_title_field", class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <h4> <%= f.label :text_field, "Description" %> </h4>
+      <%= f.text_field :body, id: "post_body_field", class: 'form-control' %>
+    </div>
+
+    <div class="form-group text-center">
+      <%= f.submit "Create Post", class: "btn btn-success btn-lg" %>
+    </div>
+  <% end %>
+
+</div>

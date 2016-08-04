@@ -1,0 +1,20 @@
+<div class="topic">
+
+  <div class="post_topic_head text-center">
+    <h1><%= @topic.title %></h1>
+  </div>
+    <div class="post_description text-center">
+      <p><%= @topic.description %></p>
+    </div>
+
+
+
+    <div class="delete_edit_part text-center">
+  <%= link_to "Delete", topic_path(@topic), method: :delete, data: { confirm: "Delete?" } %>
+    </div>
+  <br>
+
+    <div class="delete_edit_part text-center">
+  <%= link_to "Edit", edit_topic_path(@topic), data: { confirm: "Sure ah??!!Edit?" } %>
+    </div>
+</div>

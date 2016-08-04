@@ -1,0 +1,48 @@
+.post {
+
+  .post_title {
+    font-size: 50px;
+    
+
+  }
+
+  .post_body {
+    font-size: 30px;
+
+  }
+
+  .form_option {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .delete_edit_part {
+    flex:0 0 100px;
+    border-style: groove;
+    background-color: yellow;
+    justify-content: center;
+    font-size: 25px;
+
+  }
+
+  .post_big_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 20px;
+  }
+
+  .post_header {
+    flex:0 0 500px;
+    border-style: dashed;
+    border-width: medium;
+    margin: 20px
+  }
+
+  #post-create-form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}

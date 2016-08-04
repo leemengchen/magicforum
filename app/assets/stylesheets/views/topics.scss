@@ -3,6 +3,7 @@
 
   .topic_head{
     font-size: 30px;
+    color: white;
     font-weight: 300;
     font-family: monospace;
   background-image: asset-url("photos_2.jpg");
@@ -18,10 +19,35 @@
   }
 
   .topic_individual {
-    flex: 0 0 300px;
-    width:300px;
+    flex: 0 0 500px;
     position: relative;
     border-style: solid;
     border-color: black;
+    margin: 20px;
+  }
+
+  .post_topic_head {
+    font-size: 50px;
+    font-weight: bolder;
+    color: blue;
+
+  }
+
+  .post_description {
+    font-size: 30px;
+    font-weight: bolder;
+    color: blue;
+  }
+
+  .delete_edit_part {
+    font-size: 25px;
+    border-style: dotted;
+    border-color: black;
+
+  }
+
+  #topic-create-form {
+    max-width: 600px;
+    margin: 0 auto;
   }
 }
