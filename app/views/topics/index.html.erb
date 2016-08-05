@@ -10,7 +10,7 @@
       <div class= "topic_individual text-center">
       <h3><%= topic.title %></h3>
       <h5><%= topic.description %></h5>
-      <%= link_to topic.title, topic_path(topic) %>
+      <%= link_to topic.title, topic_posts_path(topic,@post) %>
       </div>
     <% end %>
   </div>
