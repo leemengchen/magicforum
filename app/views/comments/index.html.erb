@@ -1,0 +1,14 @@
+<div class="comment">
+
+  <div class="comment_head text-center">
+  <h1>comments</h1>
+  </div>
+
+
+  <div class= "comment_big_container">
+  <% @comments.each do |comment| %>
+      <div class= "comment_individual text-center">
+      <h3><%= comment.body %></h3>
+      </div>
+    <% end %>
+  </div>
