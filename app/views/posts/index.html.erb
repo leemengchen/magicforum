@@ -15,6 +15,9 @@
   <div class="post_big_container">
     <% @posts.each do |post| %>
       <div class="post_header text-center">
+
+        <%= image_tag post.image %>
+
         <h3><%= post.title %></h3>
         <h5><%= post.body %></h5>
         <%= link_to post.title, topic_post_comments_path(@topic,post) %>
@@ -22,11 +25,26 @@
   <% end %>
   </div>
 
+  <h1 class="text-center">
+    Create Post
+  </h1>
 
   <%= form_for(@post, url: topic_posts_path(@topic), html: { id: "post-create-form" }) do |f| %>
-    <h1 class="text-center">
-      Create Post
-    </h1>
+
+  <div class="form-group">
+    <h4 class="text-center"> Post Image </h4>
+    <div id="preview-image">
+      <% if @post.image? %>
+        <%= image_tag @post.image, class: "img-settings img-responsive center-block" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group">
+  <%= f.file_field :image, id: "post_image_field", class: 'form-control image-uploader' %>
+  </div>
+
+
 
     <div class="form-group">
       <h4> <%= f.label :title_field, "Title" %> </h4>

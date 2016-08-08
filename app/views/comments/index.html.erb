@@ -1,7 +1,7 @@
 <div class="comment">
 
-  <div class="post title text-center">
-  <h3><%= @post.title %></h3>
+  <div class=" text-center">
+  <h1 class="post_title"><%= @post.title %></h1>
   </div>
 
   <%= button_to "Edit This Post", edit_topic_post_path(@topic,@post), :method => :get %>
@@ -15,10 +15,34 @@
   <% if @comments.any? %>
     <% @comments.each do |comment| %>
         <div class= "comment_individual text-center">
-        <h3><%= comment.body %></h3>
+          <h3><%= comment.body %></h3>
+          <%= link_to "Edit ", edit_topic_post_comment_path(@topic,@post,comment), class: "btn btn-success" %>
+          <%= link_to "Delete ", topic_post_comment_path(@topic,@post,comment), method: :delete, class: "btn btn-warning button-mc"  %>
         </div>
       <% end %>
   <% else %>
     Nothing to see here.
   <% end %>
+
   </div>
+
+  <div class= "create_new_comment text-center">
+
+  <%= form_for(@comment, url: topic_post_comments_path(@topic, @post), html: { id: "comment-create-form" }) do |f| %>
+    <h1 class="text-center">
+      Create Comment
+    </h1>
+
+    <div class="form-group">
+      <h4> <%= f.label :text_field, "Description" %> </h4>
+      <%= f.text_field :body, id: "comment_body_field", class: 'form-control' %>
+    </div>
+
+    <div class="form-group text-center">
+      <%= f.submit "Create Comment", class: "btn btn-success btn-lg" %>
+    </div>
+  <% end %>
+
+  </div>
+
+</div>

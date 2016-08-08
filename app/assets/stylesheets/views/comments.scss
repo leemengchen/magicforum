@@ -1,0 +1,29 @@
+.comment {
+  .comment_big_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .comment_individual {
+    flex: 0 0 50%;
+    border-style: solid;
+    border-color: black;
+  }
+
+  .post_title {
+    font-size: 50px;
+
+  }
+
+  #comment-create-form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .button-mc {
+    font-size: 25px;
+  }
+
+}
