@@ -1,6 +1,7 @@
 class TopicsController <ApplicationController
 
   def index
+
     @topics = Topic.all
     @topic = Topic.new
   end
@@ -15,7 +16,6 @@ class TopicsController <ApplicationController
 
   def create
     @topic = Topic.new(topic_params)
-
     if @topic.save
       redirect_to topics_path
     else

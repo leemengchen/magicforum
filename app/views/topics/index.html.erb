@@ -23,6 +23,19 @@
         Create Your New Topic Here!!
       </h1>
 
+        <div class="form-group">
+          <h1 class="text-center"> Topic Image </h1>
+          <div id="preview-image">
+            <!-- <% if @topic.image? %>
+              <%= image_tag @topic.image, class: "img-settings img-responsive center-block" %>
+            <% end %> -->
+          </div>
+        </div>
+
+        <!-- <div class="form-group">
+        <%= f.file_field :image, id: "topic_image_field", class: 'form-control image-uploader' %>
+        </div> -->
+
       <div class="form-group">
         <h4> <%= f.label :title_field, "Title" %> </h4>
         <%= f.text_field :title, required: true, id: "topic_title_field", class: 'form-control' %>

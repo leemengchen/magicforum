@@ -1,5 +1,9 @@
 <%= form_for(@post, url: topic_post_path(@topic,@post), html: { id: "post-update-form" }) do |f| %>
 
+  <h1 class="text-center">
+    Create Post
+  </h1>
+
   <div class="form-group">
     <h4 class="text-center"> Post Image </h4>
     <div id="preview-image">
@@ -13,9 +17,6 @@
   <%= f.file_field :image, id: "post_image_field", class: 'form-control image-uploader' %>
   </div>
 
-  <h1 class="text-center">
-    Create Post
-  </h1>
 
   <div class="form-group">
     <h4> <%= f.label :title_field, "Title" %> </h4>

@@ -28,10 +28,26 @@
 
   <div class= "create_new_comment text-center">
 
-  <%= form_for(@comment, url: topic_post_comments_path(@topic, @post), html: { id: "comment-create-form" }) do |f| %>
     <h1 class="text-center">
       Create Comment
     </h1>
+
+
+  <%= form_for(@comment, url: topic_post_comments_path(@topic, @post), html: { id: "comment-create-form" }) do |f| %>
+
+    <div class="form-group">
+      <h4 class="text-center"> Comment Image </h4>
+      <div id="preview-image">
+        <% if @comment.image? %>
+          <%= image_tag @comment.image, class: "img-settings img-responsive center-block" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+    <%= f.file_field :image, id: "comment_image_field", class: 'form-control image-uploader' %>
+    </div>
+
 
     <div class="form-group">
       <h4> <%= f.label :text_field, "Description" %> </h4>
