@@ -21,7 +21,6 @@ class CommentsController < ApplicationController
     @topic = Topic.find_by(id: params[:topic_id])
     @post = Post.find_by(id: params[:topic_id])
     @comment = Comment.new(comment_params.merge(post_id:params[:post_id]))
-
     if @topic.save
       redirect_to_comments_path(@topic, @post)
     else
@@ -44,6 +43,7 @@ class CommentsController < ApplicationController
       redirect_to_comments_path(@topic, @post)
     else
       redirect_to_edit_comment_path(@topic, @post,@comment)
+    end
   end
 
   def destroy
@@ -52,7 +52,6 @@ class CommentsController < ApplicationController
     @comment = Comment.find_by(id: params[:id])
     if @comment.destroy
       redirect_to_comments_path(@topic, @post)
-    e
     end
 
   end
