@@ -32,6 +32,7 @@ gem "font-awesome-rails"
 gem "pry"
 gem "carrierwave"
 gem 'mini_magick', '~> 3.5.0'
+gem 'bcrypt'
 
 group :production do
   gem 'rails_12factor'

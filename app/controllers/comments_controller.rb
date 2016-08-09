@@ -20,13 +20,14 @@ class CommentsController < ApplicationController
   def create
     @topic = Topic.find_by(id: params[:topic_id])
     @post = @topic.posts.find_by(id: params[:topic_id])
+    # @comment = @post.comments.new(comment_params)
     @comment = Comment.new(comment_params.merge(post_id: params[:post_id]))
     if @comment.save
-      flash[:success] = "You've created a new topic."
+      flash[:success] = "You've created a new comment."
       redirect_to topic_post_comments_path(@topic, @post)
     else
-      flash[:danger] = @comment.errors.full.messages
-      redirect_to new_topic_post_comments_path( @topic,@post,@comment)
+      flash[:danger] = @comment.errors.full_messages
+      redirect_to topic_post_comments_path(@topic, @post)
     end
   end
 
