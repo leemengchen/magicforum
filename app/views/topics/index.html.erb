@@ -18,18 +18,12 @@
 
   <div class= "create_new_topic text-center">
 
-    <%= form_for(@topic, url: topics_path, html: { id: "topic-create-form" }) do |f| %>
+    <%= form_for(@topic, url: topics_path, html: { id: "topic-create-form", multiple: true }) do |f| %>
       <h1 class="text-center">
         Create Your New Topic Here!!
       </h1>
 
-        <div class="form-group">
-          <h1 class="text-center"> Topic Image </h1>
-          <div id="preview-image">
-            <% if @topic.image? %>
-              <%= image_tag @topic.image, class: "img-settings img-responsive center-block" %>
-            <% end %>
-          </div>
+
         </div>
 
         <div class="form-group">

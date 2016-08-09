@@ -13,13 +13,14 @@ class CommentsController < ApplicationController
 
   def new
     @topic = Topic.find_by(id: params[:topic_id])
-    @post = @topic.posts.find_by(id: params[:topic_id])
+    @post = @topic.posts.find_by(id: params[:post_id])
     @comment = Comment.new
   end
 
   def create
+    
     @topic = Topic.find_by(id: params[:topic_id])
-    @post = @topic.posts.find_by(id: params[:topic_id])
+    @post = @topic.posts.find_by(id: params[:post_id])
     # @comment = @post.comments.new(comment_params)
     @comment = Comment.new(comment_params.merge(post_id: params[:post_id]))
     if @comment.save

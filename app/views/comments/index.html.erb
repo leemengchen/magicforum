@@ -17,7 +17,7 @@
         <div class= "comment_individual text-center">
           <h3><%= comment.body %></h3>
           <%= link_to "Edit ", edit_topic_post_comment_path(@topic,@post,comment), class: "btn btn-success" %>
-          <%= link_to "Delete ", topic_post_comment_path(@topic,@post,comment), method: :delete, class: "btn btn-warning button-mc"  %>
+          <%= link_to "Delete ", topic_post_comment_path(@topic,@post,comment), method: :delete, class: "btn btn-warning "  %>
         </div>
       <% end %>
   <% else %>
@@ -35,18 +35,7 @@
 
   <%= form_for(@comment, url: topic_post_comments_path(@topic, @post), html: { id: "comment-create-form" }) do |f| %>
 
-    <div class="form-group">
-      <h4 class="text-center"> Comment Image </h4>
-      <div id="preview-image">
-        <% if @comment.image? %>
-          <%= image_tag @comment.image, class: "img-settings img-responsive center-block" %>
-        <% end %>
-      </div>
-    </div>
 
-    <div class="form-group">
-    <%= f.file_field :image, id: "comment_image_field", class: 'form-control image-uploader' %>
-    </div>
 
 
     <div class="form-group">

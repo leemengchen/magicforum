@@ -46,4 +46,18 @@
     max-width: 600px;
     margin: 0 auto;
   }
+
+  .post_header img {
+    max-width: 139px;
+}
+
+  .post-image {
+    width:50%;
+    float:left;
+  }
+
+  .post-text {
+    float:right;
+    width:50%;
+  }
 }

@@ -4,6 +4,13 @@
   <h3><%= @topic.title %></h3>
   </div>
 
+
+  <div id="preview-image">
+    <% if @topic.image? %>
+      <%= image_tag @topic.image, class: "img-settings img-responsive center-block" %>
+    <% end %>
+  </div>
+
   <%= button_to "Edit This Topic", edit_topic_path(@topic), :method => :get %>
   <%= button_to "Delete This Topic", topic_path(@topic), :method => :delete %>
 
@@ -16,11 +23,15 @@
     <% @posts.each do |post| %>
       <div class="post_header text-center">
 
+        <div class="post-image">
         <%= image_tag post.image %>
+        </div>
 
-        <h3><%= post.title %></h3>
-        <h5><%= post.body %></h5>
-        <%= link_to post.title, topic_post_comments_path(@topic,post) %>
+          <div class="post-text">
+          <h3><%= post.title %></h3>
+          <h5><%= post.body %></h5>
+          <%= link_to post.title, topic_post_comments_path(@topic,post) %>
+          </div>
       </div>
   <% end %>
   </div>
