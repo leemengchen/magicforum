@@ -1,5 +1,7 @@
 class TopicsController <ApplicationController
 
+  before_action :authenticate!, only: [:create, :edit, :update, :new, :destroy]
+
   def index
 
     @topics = Topic.all
@@ -15,13 +17,14 @@ class TopicsController <ApplicationController
   end
 
   def create
-    @topic = Topic.new(topic_params)
+    @topic = current_user.topics.build(topic_params)
+
     if @topic.save
       flash[:success] = "You've created a new topic."
       redirect_to topics_path
     else
       flash[:danger] = @topic.errors.full_messages
-      render new_topic_path
+      redirect_to new_topic_path
     end
   end
 

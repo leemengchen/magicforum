@@ -1,0 +1,45 @@
+<div class="form-container">
+
+   <%= form_for(@user, url: user_path(@user), html: { id: "user-edit-form" }) do |f| %>
+   <h1 class="text-center">
+     Edit User Profile
+   </h1>
+
+ 
+
+     <h4> Profile Picture </h4>
+
+
+
+
+      <div class="form-group">
+
+          <div class="user-image img-responsive img-responsive center-block">
+           <div id="preview-image">
+             <% if @user.image? %>
+               <%= image_tag @user.image, class: "img-settings img-responsive center-block " %>
+             <% end %>
+           </div>
+          </div>
+
+             <%= f.file_field :image, id: "user_image_field", class: 'form-control image-uploader' %>
+
+             <h4> <%= f.label :email_field, "Email" %> </h4>
+             <%= f.email_field :email, required: true, id: "user_email_field", class: 'form-control' %>
+
+
+             <h4> <%= f.label :password_field, "Password" %> </h4>
+             <%= f.password_field :password, id: "user_password_field", class: 'form-control' %>
+
+             <h4> <%= f.label :username_field, "Username" %> </h4>
+             <%= f.text_field :username, required: true, id: "user_username_field", class: 'form-control' %>
+
+         </div>
+
+
+       <div class="form-group text-center">
+       <%= f.submit "Update Profile", class: "btn btn-success btn-lg" %>
+       </div>
+
+   <% end %>
+ </div>

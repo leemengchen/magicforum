@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 
+  before_action :authenticate!, only: [:create, :edit, :update, :new, :destroy]
+
   def index
     @topic = Topic.includes(:posts).find_by(id: params[:topic_id])
     @post = Post.includes(:comments).find_by(id: params[:post_id])
@@ -18,7 +20,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    
+
     @topic = Topic.find_by(id: params[:topic_id])
     @post = @topic.posts.find_by(id: params[:post_id])
     # @comment = @post.comments.new(comment_params)

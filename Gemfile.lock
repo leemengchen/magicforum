@@ -38,6 +38,7 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    addressable (2.4.0)
     arel (7.1.1)
     autoprefixer-rails (6.4.0.1)
       execjs
@@ -64,6 +65,8 @@ GEM
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.7.0)
+    figaro (1.1.1)
+      thor (~> 0.14)
     font-awesome-rails (4.6.3.1)
       railties (>= 3.2, < 5.1)
     globalid (0.3.7)
@@ -77,6 +80,10 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (2.0.2)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -102,6 +109,8 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     puma (3.6.0)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -177,13 +186,16 @@ DEPENDENCIES
   bootstrap-sass
   carrierwave
   coffee-rails (~> 4.2)
+  figaro
   font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails
+  letter_opener
   mini_magick
   pg
   pry
   puma (~> 3.0)
+  pundit
   rails (~> 5.0.0)
   rails_12factor
   sass-rails (~> 5.0)

@@ -16,5 +16,5 @@ CarrierWave.configure do |config|
   }
   config.fog_directory = ENV.fetch("AWS_BUCKET")
   config.fog_public = false
-end
+  end
 end
