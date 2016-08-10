@@ -1,7 +1,7 @@
 class CommentPolicy < ApplicationPolicy
 
   def new?
-    user.present? && user.user || user_has_power
+    user.present? && user.user? || user_has_power?
   end
 
   def create?
