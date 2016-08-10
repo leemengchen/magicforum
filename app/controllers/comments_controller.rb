@@ -17,6 +17,7 @@ class CommentsController < ApplicationController
     @topic = Topic.find_by(id: params[:topic_id])
     @post = @topic.posts.find_by(id: params[:post_id])
     @comment = Comment.new
+    authorize @comment
   end
 
   def create
@@ -24,7 +25,8 @@ class CommentsController < ApplicationController
     @topic = Topic.find_by(id: params[:topic_id])
     @post = @topic.posts.find_by(id: params[:post_id])
     # @comment = @post.comments.new(comment_params)
-    @comment = Comment.new(comment_params.merge(post_id: params[:post_id]))
+    @comment = current_user.comments.build(comment_params.merge(post_id: params[:post_id]))
+    authorize @comment
     if @comment.save
       flash[:success] = "You've created a new comment."
       redirect_to topic_post_comments_path(@topic, @post)
@@ -44,6 +46,7 @@ class CommentsController < ApplicationController
     @topic = Topic.find_by(id: params[:topic_id])
     @post = Post.find_by(id: params[:post_id])
     @comment = Comment.find_by(id: params[:id])
+    authorize @comment
 
     if @comment.update(comment_params)
       redirect_to topic_post_comments_path(@topic, @post)
