@@ -1,0 +1,18 @@
+
+<div class="comment_head text-center">
+  <h1>Comments</h1>
+</div>
+
+<div class= "comment_big_container">
+<% if comments.any? %>
+
+      <div class= "comment_individual text-center">
+        <h3><%= comment.body %></h3>
+          <%= link_to "Edit ", edit_topic_post_comment_path(topic,post,comment), class: "btn btn-success" %>
+          <%= link_to "Delete ", topic_post_comment_path(topic,post,comment), method: :delete, class: "btn btn-warning "  %>
+      </div>
+
+<% else %>
+  Nothing to see here.
+<% end %>
+<div>

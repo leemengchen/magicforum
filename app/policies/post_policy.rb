@@ -17,7 +17,7 @@ class PostPolicy < ApplicationPolicy
     end
 
     def destroy?
-      new?
+      user.present? && record.user_id == user.id || user_has_power?
     end
 
     private

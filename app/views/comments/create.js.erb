@@ -1,0 +1,3 @@
+$('#comments-form-container').html("<%=j render partial: 'partials/comment_create_form', locals: { comment: @comment, post: @comment.post } %>")
+$('#comments').append("<%=j render partial: 'partials/comments', locals: { comment: @comment, post: @comment.post } %>")
+$('#flash-messages-container').html("<%=j render partial: 'partials/flash_messages' %>")

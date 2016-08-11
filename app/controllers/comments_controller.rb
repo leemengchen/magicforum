@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-
+  respond_to :js
   before_action :authenticate!, only: [:create, :edit, :update, :new, :destroy]
 
   def index
@@ -7,18 +7,19 @@ class CommentsController < ApplicationController
     @post = Post.includes(:comments).find_by(id: params[:post_id])
     @comments = @post.comments.order("created_at DESC")
     @comment = Comment.new
+    authorize @comment
   end
 
   def show
     @comment = Comment.find_by(id: params[:id])
   end
 
-  def new
-    @topic = Topic.find_by(id: params[:topic_id])
-    @post = @topic.posts.find_by(id: params[:post_id])
-    @comment = Comment.new
-    authorize @comment
-  end
+  # def new
+  #   @topic = Topic.find_by(id: params[:topic_id])
+  #   @post = @topic.posts.find_by(id: params[:post_id])
+  #   @comment = Comment.new
+  #   authorize @comment
+  # end
 
   def create
 
@@ -26,12 +27,13 @@ class CommentsController < ApplicationController
     @post = @topic.posts.find_by(id: params[:post_id])
     # @comment = @post.comments.new(comment_params)
     @comment = current_user.comments.build(comment_params.merge(post_id: params[:post_id]))
+    @new_comment=Comment.new
     authorize @comment
     if @comment.save
-      flash[:success] = "You've created a new comment."
+      flash.now[:success] = "You've created a new comment."
       redirect_to topic_post_comments_path(@topic, @post)
     else
-      flash[:danger] = @comment.errors.full_messages
+      flash.now[:danger] = @comment.errors.full_messages
       redirect_to topic_post_comments_path(@topic, @post)
     end
   end
@@ -49,8 +51,10 @@ class CommentsController < ApplicationController
     authorize @comment
 
     if @comment.update(comment_params)
+      flash.now[:success]="You're successfullly update your comment!"
       redirect_to topic_post_comments_path(@topic, @post)
     else
+      flash.now[:danger]="You're unsuccessfullly update your comment!"
       redirect_to edit_topic_post_comment_path( @post,@comment)
     end
   end

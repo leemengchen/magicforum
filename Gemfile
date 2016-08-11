@@ -34,6 +34,7 @@ gem 'mini_magick'
 gem 'bcrypt'
 gem 'figaro'
 gem 'pundit'
+gem 'responders'
 
 group :production do
   gem 'rails_12factor'

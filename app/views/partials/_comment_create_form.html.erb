@@ -1,0 +1,20 @@
+<div class= "create_new_comment text-center">
+
+  <h1 class="text-center">
+    Create Comment
+  </h1>
+
+
+  <%= form_for(comment, url: topic_post_comments_path(topic, post), method: :post, remote: true, html: { id: "comment-create-form" }) do |f| %>
+
+  <div class="form-group">
+  <h4> <%= f.label :text_field, "Description" %> </h4>
+    <%= f.text_field :body, id: "comment_body_field", class: 'form-control' %>
+  </div>
+
+  <div class="form-group text-center">
+  <%= f.submit "Create Comment", class: "btn btn-success btn-lg" %>
+  </div>
+  <% end %>
+
+</div>

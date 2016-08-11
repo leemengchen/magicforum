@@ -1,7 +1,7 @@
 <div class="post">
 
   <div class="topic title text-center">
-  <h3><%= @topic.title %></h3>
+    <h3><%= @topic.title %></h3>
   </div>
 
 
@@ -16,7 +16,7 @@
 
 
   <div class="big_header text-center">
-  <h1>Posts</h1>
+    <h1>Posts</h1>
   </div>
 
   <div class="post_big_container">
@@ -24,14 +24,14 @@
       <div class="post_header text-center">
 
         <div class="post-image">
-        <%= image_tag post.image %>
+          <%= image_tag post.image %>
         </div>
 
-          <div class="post-text">
+        <div class="post-text">
           <h3><%= post.title %></h3>
           <h5><%= post.body %></h5>
-          <%= link_to post.title, topic_post_comments_path(@topic,post) %>
-          </div>
+            <%= link_to post.title, topic_post_comments_path(@topic,post) %>
+        </div>
       </div>
   <% end %>
   </div>
@@ -59,12 +59,12 @@
 
     <div class="form-group">
       <h4> <%= f.label :title_field, "Title" %> </h4>
-      <%= f.text_field :title, required: true, id: "post_title_field", class: 'form-control' %>
+        <%= f.text_field :title, required: true, id: "post_title_field", class: 'form-control' %>
     </div>
 
     <div class="form-group">
       <h4> <%= f.label :text_field, "Description" %> </h4>
-      <%= f.text_field :body, id: "post_body_field", class: 'form-control' %>
+        <%= f.text_field :body, id: "post_body_field", class: 'form-control' %>
     </div>
 
     <div class="form-group text-center">
