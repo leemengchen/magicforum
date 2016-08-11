@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/mshibuya/remotipart.git
+  revision: 88d9a7d55bde66acb6cf3a3c6036a5a1fc991d5e
+  ref: 88d9a7d
+  specs:
+    remotipart (1.2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -200,6 +207,7 @@ DEPENDENCIES
   pundit
   rails (~> 5.0.0)
   rails_12factor
+  remotipart!
   responders
   sass-rails (~> 5.0)
   turbolinks (~> 5)

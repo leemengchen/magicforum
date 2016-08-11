@@ -1,55 +1,33 @@
 <div class="comment">
 
-  <div class=" text-center">
-    <h1 class="post_title"><%= @post.title %></h1>
-  </div>
+    <div class=" text-center">
+        <h1 class="post_title"><%= @post.title %></h1>
+    </div>
 
-  <%= button_to "Edit This Post", edit_topic_post_path(@topic,@post), :method => :get %>
-  <%= button_to "Delete This Post", topic_post_path(@topic,@post), :method => :delete %>
+    <%= button_to "Edit This Post", edit_topic_post_path(@topic,@post), :method => :get %>
+    <%= button_to "Delete This Post", topic_post_path(@topic,@post), :method => :delete %>
 
-  <!-- <div class="comment_head text-center">
-    <h1>Comments</h1>
-  </div> -->
-
-  <div id="comments">
-    <% @comments.each do |comment| %>
-      <%= render partial: "partials/comments", locals: { comment: @comment, post: @post, topic: @topic } %>
-    <% end %>
-  </div>
-
-  <!-- <div class= "comment_big_container">
-  <% if @comments.any? %>
-    <% @comments.each do |comment| %>
-        <div class= "comment_individual text-center">
-          <h3><%= comment.body %></h3>
-            <%= link_to "Edit ", edit_topic_post_comment_path(@topic,@post,comment), class: "btn btn-success" %>
-            <%= link_to "Delete ", topic_post_comment_path(@topic,@post,comment), method: :delete, class: "btn btn-warning "  %>
+    <div id="comments">
+        <div class="comment_head text-center">
+            <h1>Comments</h1>
         </div>
-      <% end %>
-  <% else %>
-    Nothing to see here.
-  <% end %>
-  <div> -->
 
-  <!-- <div class= "create_new_comment text-center">
-    <h1 class="text-center">
-      Create Comment
-    </h1> -->
+        <div class="comment_big_container">
+
+            <% if @comments.any? %>
+
+            <% @comments.each do |comment| %>
+            <%= render partial: "comment", locals: { comment: comment, post: @post, topic: @topic } %>
+            <% end %>
+
+        <% else %>
+            Nothing to see here.
+            <% end %>
+        </div>
+    </div>
 
     <div id="comments-form-container">
-      <%= render partial: 'partials/comment_create_form', locals: { comment: @comment, post: @post, topic: @topic} %>
+        <%= render partial: "comment_create_form", locals: { comment: @comment, post: @post, topic: @topic} %>
     </div>
 
-      <!-- <%= form_for(@comment, url: topic_post_comments_path(@topic, @post), method: :post, remote: true, html: { id: "comment-create-form" }) do |f| %>
-
-    <div class="form-group">
-      <h4> <%= f.label :text_field, "Description" %> </h4>
-        <%= f.text_field :body, id: "comment_body_field", class: 'form-control' %>
-    </div>
-
-    <div class="form-group text-center">
-      <%= f.submit "Create Comment", class: "btn btn-success btn-lg" %>
-    </div>
-  <% end %> -->
-
-  </div>
+</div>

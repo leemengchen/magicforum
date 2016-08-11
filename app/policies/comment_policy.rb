@@ -1,11 +1,8 @@
 class CommentPolicy < ApplicationPolicy
 
-  def index?
-    user.present? && user.user? || user_has_power?
-  end
 
   def new?
-    new?
+    user.present?
   end
 
   def create?
@@ -13,15 +10,15 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.present? && record.user_id == user.id || user_has_power?
+    user.present? && record.user == user || user_has_power?
   end
 
   def update?
-    new?
+    edit?
   end
 
   def destroy?
-    user.present? && record.user_id == user.id || user_has_power?
+    edit?
   end
 
   private

@@ -1,7 +1,7 @@
 class PostPolicy < ApplicationPolicy
 
     def new?
-      user.present? && user.user || user_has_power
+      user.present?
     end
 
     def create?
@@ -9,15 +9,15 @@ class PostPolicy < ApplicationPolicy
     end
 
     def edit?
-      user.present? && record.user_id == user.id || user_has_power?
+      user.present? && record.user == user || user_has_power?
     end
 
     def update?
-      new?
+      edit?
     end
 
     def destroy?
-      user.present? && record.user_id == user.id || user_has_power?
+      edit?
     end
 
     private

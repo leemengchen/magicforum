@@ -1,75 +1,37 @@
 <div class="post">
 
-  <div class="topic title text-center">
-    <h3><%= @topic.title %></h3>
-  </div>
+  <div class="Topic-header">
+    <div class="topic title text-center">
+      <h3><%= @topic.title %></h3>
+    </div>
 
 
-  <div id="preview-image">
-    <% if @topic.image? %>
-      <%= image_tag @topic.image, class: "img-settings img-responsive center-block" %>
-    <% end %>
-  </div>
-
-  <%= button_to "Edit This Topic", edit_topic_path(@topic), :method => :get %>
-  <%= button_to "Delete This Topic", topic_path(@topic), :method => :delete %>
-
-
-  <div class="big_header text-center">
-    <h1>Posts</h1>
-  </div>
-
-  <div class="post_big_container">
-    <% @posts.each do |post| %>
-      <div class="post_header text-center">
-
-        <div class="post-image">
-          <%= image_tag post.image %>
-        </div>
-
-        <div class="post-text">
-          <h3><%= post.title %></h3>
-          <h5><%= post.body %></h5>
-            <%= link_to post.title, topic_post_comments_path(@topic,post) %>
-        </div>
-      </div>
-  <% end %>
-  </div>
-
-  <h1 class="text-center">
-    Create Post
-  </h1>
-
-  <%= form_for(@post, url: topic_posts_path(@topic), html: { id: "post-create-form" }) do |f| %>
-
-  <div class="form-group">
-    <h4 class="text-center"> Post Image </h4>
     <div id="preview-image">
-      <% if @post.image? %>
-        <%= image_tag @post.image, class: "img-settings img-responsive center-block" %>
+      <% if @topic.image? %>
+        <%= image_tag @topic.image, class: "img-settings img-responsive center-block" %>
       <% end %>
     </div>
+
+    <%= button_to "Edit This Topic", edit_topic_path(@topic), :method => :get %>
+    <%= button_to "Delete This Topic", topic_path(@topic), :method => :delete %>
   </div>
 
-  <div class="form-group">
-  <%= f.file_field :image, id: "post_image_field", class: 'form-control image-uploader' %>
+  <div class="post-content">
+    <div class="big_header text-center">
+      <h1>Posts</h1>
+    </div>
+
+    <div class="post_big_container">
+      <% @posts.each do |post| %>
+        <%= render partial: "post", locals: {post: post, topic: @topic } %>
+    <% end %>
+    </div>
+
+
+
+    <div id="posts-form-container">
+        <%= render partial: "post_create_form", locals: {  post: @post, topic: @topic} %>
+    </div>
   </div>
-
-
-
-    <div class="form-group">
-      <h4> <%= f.label :title_field, "Title" %> </h4>
-        <%= f.text_field :title, required: true, id: "post_title_field", class: 'form-control' %>
-    </div>
-
-    <div class="form-group">
-      <h4> <%= f.label :text_field, "Description" %> </h4>
-        <%= f.text_field :body, id: "post_body_field", class: 'form-control' %>
-    </div>
-
-    <div class="form-group text-center">
-      <%= f.submit "Create Post", class: "btn btn-success btn-lg" %>
-    </div>
-  <% end %>
 
 </div>

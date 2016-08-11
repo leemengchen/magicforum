@@ -1,3 +1,7 @@
-$('#comments-form-container').html("<%=j render partial: 'partials/comment_create_form', locals: { comment: @comment, post: @comment.post } %>")
-$('#comments').append("<%=j render partial: 'partials/comments', locals: { comment: @comment, post: @comment.post } %>")
+
 $('#flash-messages-container').html("<%=j render partial: 'partials/flash_messages' %>")
+
+ <% if @comment.persisted? %>
+   $('#comments').append("<%=j render partial: 'comment', locals: { comment: @comment, post: @comment.post, topic: @topic } %>")
+   $('#comments-form-container').html("<%=j render partial: 'comment_create_form', locals: { comment: @new_comment, post: @post, topic: @topic } %>")
+ <% end %>

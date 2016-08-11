@@ -35,6 +35,7 @@ gem 'bcrypt'
 gem 'figaro'
 gem 'pundit'
 gem 'responders'
+gem 'remotipart', github: 'mshibuya/remotipart', ref: '88d9a7d'
 
 group :production do
   gem 'rails_12factor'
