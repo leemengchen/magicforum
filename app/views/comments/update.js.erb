@@ -1,0 +1,5 @@
+
+ // <% if @comment.persisted? %>
+   $('#comments').append("<%=j render partial: 'comments/comment', locals: { comment: @comment, post: @comment.post } %>")
+ //   $('#comments-form-container').html("<%=j render partial: 'comment_edit_form', locals: { comment: @new_comment, post: @post } %>")
+ // <% end %>

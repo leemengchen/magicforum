@@ -1,6 +1,6 @@
-<!-- <div class=comment>
+<div class=comment>
 
-  <%= form_for(@comment, url: topic_post_comment_path(@topic,@post,@comment), html: { id: "comment-update-form" }) do |f| %>
+  <%= form_for(comment, url: topic_post_comment_path(topic,post,comment),remote: :true, html: { id: "comment-form-holder" }) do |f| %>
     <h1 class="text-center">
       Edit Comment
     </h1>
@@ -15,4 +15,4 @@
     </div>
   <% end %>
 
-</div> -->
+</div>

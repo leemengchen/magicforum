@@ -1,5 +1,13 @@
-<div class= "comment_individual text-center">
+<div id="comment-<%= comment.id %>" class= "comment_individual text-center">
+
+  <div class="edit-button" id="comment-form-holder-<%= comment.id %>">
+
+  </div>
+
+
+  <div id="comment-container-<%=comment.id%>" >
   <h3><%= comment.body %></h3>
-      <%= link_to "Edit ", edit_topic_post_comment_path(topic,post,comment), class: "btn btn-success" %>
-      <%= link_to "Delete ", topic_post_comment_path(topic,post,comment), method: :delete, remote: :true, class: "btn btn-warning "  %>
+      <%= link_to "Edit Comment ", edit_topic_post_comment_path(topic,post,comment), remote: :true, class: "btn btn-success" %>
+      <%= link_to "Delete ", topic_post_comment_path(topic,post,comment), method: :delete,remote: :true, class: "btn btn-warning "  %>
+  </div>
 </div>

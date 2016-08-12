@@ -1,0 +1,2 @@
+$('#comment-form-holder-<%= @comment.id %>').html("<%=j render partial: 'comment_update_form', locals: { comment: @comment, post: @post, topic: @topic } %>")
+$('#comment-container-<%= @comment.id %>').html("")
