@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   def index
     @topic = Topic.includes(:posts).find_by(id: params[:topic_id])
     @post = Post.includes(:comments).find_by(id: params[:post_id])
-    @comments = @post.comments.order("created_at DESC")
+    @comments = @post.comments.order("created_at DESC").page params[:page]
     @comment = Comment.new
   end
 

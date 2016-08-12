@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @topic = Topic.includes(:posts).find_by(id: params[:topic_id])
-    @posts = @topic.posts.order("created_at DESC")
+    @posts = @topic.posts.order("created_at DESC").page params[:page]
     @post = Post.new
   end
 
@@ -34,7 +34,8 @@ class PostsController < ApplicationController
     def edit
       @post = Post.find_by(id: params[:id])
       @topic = @post.topic
-      
+      $prevURL = request.referer
+
     end
 
     def update
@@ -43,7 +44,8 @@ class PostsController < ApplicationController
       authorize @post
 
     if @post.update(post_params)
-      redirect_to topic_posts_path(@topic)
+      # redirect_to topic_posts_path(@topic, @post)
+      redirect_to $prevURL
     else
       redirect_to edit_topic_post_path(@topic, @post)
     end

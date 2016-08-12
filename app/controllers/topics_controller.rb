@@ -4,7 +4,7 @@ class TopicsController <ApplicationController
 
   def index
 
-    @topics = Topic.all
+    @topics = Topic.all.page params[:page]
     @topic = Topic.new
   end
 

@@ -5,4 +5,6 @@ class Post < ApplicationRecord
   validates :title, length: { minimum: 5}, presence: true
   validates :body, length: { minimum: 5 }, presence: true
   belongs_to :user
+  paginates_per 5
+  max_paginates_per 5
 end

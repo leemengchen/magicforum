@@ -26,6 +26,10 @@
         </div>
     </div>
 
+    <div class="paginate text-center">
+        <%= paginate @comments %>
+    </div>
+
     <div id="comments-form-container">
         <%= render partial: "comment_create_form", locals: { comment: @comment, post: @post, topic: @topic} %>
     </div>

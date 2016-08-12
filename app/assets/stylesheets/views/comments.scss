@@ -1,6 +1,5 @@
 .comment {
   .comment_big_container {
-    display: flex;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
@@ -10,6 +9,8 @@
     flex: 0 0 50%;
     border-style: solid;
     border-color: black;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
   .post_title {
