@@ -1,4 +1,4 @@
-<div id="comment-<%= comment.id %>" class= "comment_individual text-center">
+<div class= "comment_individual text-center <%=extra_class%>",id="comment-<%= comment.id %>">
 
   <div class="edit-button" id="comment-form-holder-<%= comment.id %>">
 
@@ -7,7 +7,14 @@
 
   <div id="comment-container-<%=comment.id%>" >
   <h3><%= comment.body %></h3>
+    <div class="control-panel">
+        <% if comment.user == current_user %>
       <%= link_to "Edit Comment ", edit_topic_post_comment_path(topic,post,comment), remote: :true, class: "btn btn-success" %>
+        <% end %>
+
+        <% if comment.user == current_user || current_user&.admin? || current_user&.moderator? %>
       <%= link_to "Delete ", topic_post_comment_path(topic,post,comment), method: :delete,remote: :true, class: "btn btn-warning "  %>
+        <% end %>
+
   </div>
 </div>

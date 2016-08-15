@@ -1,1 +1,8 @@
-<%= paginate @users, :remote => true %>
+
+$('#flash-messages-container').html("<%=j render partial: 'partials/flash_messages' %>")
+
+ <% if @topic.persisted? %>
+   $('#topics').append("<%=j render partial: 'topic', locals: { topic: @topic } %>")
+   $('#topic-create-form').html("<%=j render partial: 'topic_create_form', locals: { topic: @new_topic} %>")
+
+ <% end %>

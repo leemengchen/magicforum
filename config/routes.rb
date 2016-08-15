@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  mount ActionCable.server => '/cable'
+
   root 'landing#index'
   get :about, to: 'static_pages#about'
   resources :topics, except: [:show] do

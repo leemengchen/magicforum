@@ -1,4 +1,4 @@
-<div class="comment">
+<div class="comments index",id="comments">
 
     <div class=" text-center">
         <h1 class="post_title"><%= @post.title %></h1>
@@ -17,7 +17,7 @@
             <% if @comments.any? %>
 
             <% @comments.each do |comment| %>
-            <%= render partial: "comment", locals: { comment: comment, post: @post, topic: @topic } %>
+            <%= render partial: "comment", locals: { comment: comment, post: @post, topic: @topic, extra_class: '' } %>
             <% end %>
 
         <% else %>
