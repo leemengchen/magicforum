@@ -1,9 +1,24 @@
 postsChannelFunctions = () ->
 
   checkMe = (comment_id) ->
-    if $('meta[name=wizardwonka]').length < 1
+    if $('meta[name=admin]').length < 1
       $(".comment-child[data-id=#{comment_id}] .control-panel").remove()
-    $(".comment-child[data-id=#{comment_id}]").removeClass("hidden")
+
+  createComment = (data) ->
+    console.log(data)
+    if $('.comments-parent').data().id == data.post.id
+      $('#comments').append(data.partial)
+      checkMe(data.comment.id)
+
+  updateComment =  (data) ->
+    console.log(data)
+    if $('.comments-parent').data().id == data.post.id
+      $(".comment-child[data-id=#{data.comment.id}] ").replaceWith(data.partial)
+      checkMe(data.comment.id)
+
+  destroyComment = (data) ->
+    console.log(data)
+    $(".comment-child[data-id=#{data.comment.id}] ").remove()
 
   if $('.comments-parent').length > 0
     App.posts_channel = App.cable.subscriptions.create {
@@ -15,11 +30,10 @@ postsChannelFunctions = () ->
     disconnected: () ->
       console.log("user logged out");
 
-
     received: (data) ->
-      console.log(data);
-      if $('.comments-parent').data().id 
-        $('#comments').append(data.partial)
-        checkMe(data.comment.id)
+      switch data.type
+        when "create" then createComment(data)
+        when "update" then updateComment(data)
+        when "destroy" then destroyComment(data)
 
 $(document).on 'turbolinks:load', postsChannelFunctions

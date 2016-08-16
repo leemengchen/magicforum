@@ -1,4 +1,4 @@
-<div class=comment>
+<div class="comment-update-form" data-id="<%= comment.id %>">
 
   <%= form_for(comment, url: topic_post_comment_path(topic,post,comment),remote: :true, html: { id: "comment-form-holder" }) do |f| %>
     <h1 class="text-center">
