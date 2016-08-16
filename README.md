@@ -7,4 +7,4 @@ application up and running.
 
 A simple discussion board created by me during Magic's Full Stack Development Bootcamp
 
-by MC
+by MC 2016
