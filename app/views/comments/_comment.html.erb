@@ -16,6 +16,14 @@
           <%= link_to "Delete ", topic_post_comment_path(post.topic,post,comment), method: :delete,remote: :true, class: "btn btn-warning "  %>
         <% end %>
     </div>
+
+    <div class="votes" >
+      <%= link_to "Upvote", upvote_path(comment_id: comment.id), method: post, remote: true %>
+      <%= link_to fa_icon("thumbs-down 2x"), downvote_path(comment_id: comment.id), method: post, remote: true %>
+      <%= comment.total_votes %>
+    </div>
   </div>
+
+
 
 </div>
