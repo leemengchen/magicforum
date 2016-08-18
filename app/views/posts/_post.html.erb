@@ -4,7 +4,9 @@
     <%= image_tag post.image %>
   </div>
 
-  <div class="post-text">
+
+
+  <div class="post-text text-center">
     <h3><%= post.title %></h3>
     <h5><%= post.body %></h5>
       <%= link_to post.title, topic_post_comments_path(@topic,post) %>
