@@ -1,7 +1,6 @@
 <div class="comment-child text-center " data-id="<%= comment.id %>">
 
   <div class="edit-button" id="comment-form-holder-<%= comment.id %>">
-
   </div>
 
 
@@ -18,12 +17,11 @@
     </div>
 
     <div class="votes" >
-      <%= link_to "Upvote", upvote_path(comment_id: comment.id), method: post, remote: true %>
-      <%= link_to fa_icon("thumbs-down 2x"), downvote_path(comment_id: comment.id), method: post, remote: true %>
-      <%= comment.total_votes %>
+      <%= link_to fa_icon("thumbs-up 2x"), upvote_path(comment_id: comment.id), method: :post, remote: true  %>
+      <%= link_to fa_icon("thumbs-down 2x"), downvote_path(comment_id: comment.id), method: :post, remote: true %>
+      <div class="votes-score">
+        <%= comment.total_votes %>
+      </div>
     </div>
   </div>
-
-
-
 </div>

@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
+  extend FriendlyId
+  friendly_id :body, use: :slugged
   belongs_to :post
   mount_uploader :image, ImageUploader
   validates :body, length: { minimum: 5 }, presence: true
