@@ -8,11 +8,11 @@
   <h3><%= comment.body %></h3>
     <div class="control-panel">
         <% if comment.user == current_user %>
-          <%= link_to "Edit Comment ", edit_topic_post_comment_path(post.topic,post,comment), remote: :true, class: "btn btn-success" %>
+          <%= link_to "Edit Comment ", edit_topic_post_comment_path(topic,post,comment), remote: :true, class: "btn btn-success" %>
         <% end %>
 
         <% if comment.user == current_user || current_user&.admin? || current_user&.moderator? %>
-          <%= link_to "Delete ", topic_post_comment_path(post.topic,post,comment), method: :delete,remote: :true, class: "btn btn-warning "  %>
+          <%= link_to "Delete ", topic_post_comment_path(topic,post,comment), method: :delete,remote: :true, class: "btn btn-warning "  %>
         <% end %>
     </div>
 

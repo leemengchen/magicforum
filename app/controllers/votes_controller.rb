@@ -18,7 +18,7 @@ class VotesController < ApplicationController
 
     if @vote.update value: -1
       VoteBroadcastJob.perform_later(@vote.comment)
-      flash.now[:success] = "You downvoted."
+      flash.now[:danger] = "You downvoted."
     else
       flash.now[:danger] = "Voting failed"
     end

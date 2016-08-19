@@ -29,11 +29,15 @@
           <% else %>
 
             <li>
-              <%= link_to "Register", new_user_path, class: 'white shadowed link-styling' %>
+              <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalregister">
+                REGISTER
+              </button>
             </li>
 
             <li>
-              <%= link_to "Login", new_session_path, class: 'white shadowed link-styling' %>
+              <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modallogin">
+                LOGIN
+              </button>
             </li>
           <% end %>
 

@@ -17,15 +17,15 @@ class UsersController < ApplicationController
   end
 
     def edit
-      @user = User.find_by(id: params[:id])
+      @user = User.friendly.find(params[:id])
     end
 
 
 
   def update
-    @user = User.find_by(id: params[:id])
+    @user = User.friendly.find(params[:id])
     if @user.update(user_params)
-      redirect_to root_path(@user)
+      redirect_to root_pathname(@user)
     else
       redirect_to edit_user_path(@user)
     end
