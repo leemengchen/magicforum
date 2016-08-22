@@ -1,6 +1,6 @@
 <div class="form-container">
 
-   <%= form_for(@user, url: user_path(@user), html: { id: "user-edit-form" }) do |f| %>
+   <%= form_for(current_user, url: user_path(current_user), html: { id: "user-edit-form" }) do |f| %>
    <h1 class="text-center">
      Edit User Profile
    </h1>
@@ -16,8 +16,8 @@
 
           <div class="user-image img-responsive img-responsive center-block">
            <div id="preview-image">
-             <% if @user.image? %>
-               <%= image_tag @user.image, class: "img-settings img-responsive center-block " %>
+             <% if current_user.image? %>
+               <%= image_tag current_user.image, class: "img-settings img-responsive center-block " %>
              <% end %>
            </div>
           </div>
