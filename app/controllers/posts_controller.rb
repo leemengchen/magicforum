@@ -31,8 +31,10 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.friendly.find(params[:id])
-    @topic = @post.topic
-    $prevURL = request.referer
+    @topic = @post.topic(params[:topic_id])
+    authorize @post
+
+    # $prevURL = request.referer
 
   end
 
@@ -42,8 +44,8 @@ class PostsController < ApplicationController
     authorize @post
 
     if @post.update(post_params)
-      # redirect_to topic_posts_path(@topic, @post)
-      redirect_to $prevURL
+      redirect_to topic_posts_path(@topic, @post)
+      # redirect_to $prevURL
     else
       redirect_to edit_topic_post_path(@topic, @post)
     end

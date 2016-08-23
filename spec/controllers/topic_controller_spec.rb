@@ -4,7 +4,7 @@ require 'rails_helper'
 
    before(:all) do
     @admin = User.create(username: "admin01", email: "admin@gmail.com", password: "admin", role: 2)
-    @unauthorized_user = User.create(username:"user01", email:"user@hotmail.com", password:"user", role: 0 )
+    @unauthorized_user = User.create(username:"user01", email:"user@hotmail.com", password:"12345", role: 0 )
     @topic = Topic.create(title: "testing2", description: "test description", user_id: @admin.id)
   end
 
@@ -32,7 +32,7 @@ require 'rails_helper'
       params = { topic:{ title: "testing2", description: "test description" } }
       post :create,xhr: true, params: params, session: { id: @unauthorized_user.id }
 
-      expect(flash[:danger]).to eql("You need to login first")
+      expect(flash[:danger]).to eql("You're not authorized")
 
     end
 
@@ -71,7 +71,7 @@ require 'rails_helper'
     get :edit, params: params, session: {id: @unauthorized_user.id}
 
     expect(subject).to redirect_to(root_path)
-    expect(flash[:danger]).to eql("You need to login first")
+    expect(flash[:danger]).to eql("You're not authorized")
     end
 
     it "should render edit only if you are admin" do
@@ -105,7 +105,7 @@ require 'rails_helper'
       patch :update, params: params, session: {id: @unauthorized_user.id}
 
       expect(subject).to redirect_to(root_path)
-      expect(flash[:danger]).to eql("You need to login first")
+      expect(flash[:danger]).to eql("You're not authorized")
     end
 
     it "should render update only if you are admin" do
@@ -140,7 +140,7 @@ require 'rails_helper'
       delete :destroy, params: params, session: {id: @unauthorized_user.id}
 
       expect(subject).to redirect_to(root_path)
-      expect(flash[:danger]).to eql("You need to login first")
+      expect(flash[:danger]).to eql("You're not authorized")
     end
 
     it "should render destroy only if you are admin" do
