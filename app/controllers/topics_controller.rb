@@ -33,13 +33,14 @@ class TopicsController <ApplicationController
   end
 
     def edit
-      @topic = Topic.friendly.find( params[:id])
+      @topic = Topic.friendly.find(params[:id])
+      authorize @topic
     end
 
 
 
   def update
-    @topic = Topic.friendly.find( params[:id])
+    @topic = Topic.friendly.find(params[:id])
     authorize @topic
 
     if @topic.update(topic_params)

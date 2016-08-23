@@ -49,9 +49,10 @@ require 'rails_helper'
       get :edit, params: params, session: { id: @user.id }
 
       current_user = subject.send(:current_user)
-      expect(subject).to render_template(:edit)
       expect(current_user).to be_present
-    end
+      expect(current_user).to eql(@user)
+      expect(subject).to render_template(:edit)
+      end
   end
 
     describe "update user" do
