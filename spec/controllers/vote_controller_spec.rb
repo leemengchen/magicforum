@@ -11,6 +11,15 @@ RSpec.describe VotesController, type: :controller do
     @comment = @post.comments.create(body:"testing4", user_id: @user.id)
   end
 
+  describe "you can't vote if you are not logged in" do
+    it "should redirect if not logged in" do
+      params = {comment_id: @comment.id}
+      post :upvote, xhr: true, params: params
+
+      expect(flash[:danger]).to eql("You need to login first")
+    end
+  end
+
   describe "upvote a comment" do
     it "should successfully upvote a comment if you are an admin" do
 
