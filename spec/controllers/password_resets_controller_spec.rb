@@ -55,14 +55,35 @@ require 'rails_helper'
     end
 
   it "A valid user able to update password" do
-
-      params = { id: @user.id , password:"newpassword"}
+      @user.update(password_reset_token: "token", password_reset_at: DateTime.now )
+      params = { id: @user.password_reset_token , user: {password:"newpassword"}}
       patch :update, params: params
 
       @user.reload
 
+      @oldpassword = @user.authenticate("12345")
+      @user = @user.authenticate("newpassword")
+
+      expect(@oldpassword).to eql(false)
+      expect(@user).to be_present
       expect(flash[:success] = "Password updated, you may log in now")
-      expect(subject).to redirect_to (root_path)
+      expect(subject).to redirect_to(root_path)
+
+    end
+
+    it "should error token invalid" do
+      user = User.find_by( id:@user.id)
+      @user.update(password_reset_token: "correcttoken", password_reset_at: DateTime.now )
+      wrongtoken = "wrongtoken"
+
+      params = { id: wrongtoken , user: {password:"newpassword"},password_reset_at: DateTime.now }
+      patch :update, params: params
+
+      @user.reload
+
+      expect(@user.password).to eql("12345")
+      expect(flash[:danger]).to eql("Error, token is invalid or has expired")
+      expect(subject).to redirect_to(edit_password_reset_path)
 
     end
   end
