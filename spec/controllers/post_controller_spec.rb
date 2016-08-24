@@ -8,7 +8,7 @@ require 'rails_helper'
     @user = User.create(username: "normal user", email: "normaluser@gmail.com", password: "12345", role: 0)
     @moderator = User.create(username: "moderator01", email: "moderator01@gmail.com", password: "12345", role: 2)
     @topic = Topic.create(title: "testing2", description: "test description", user_id: @admin.id)
-    @post = @topic.posts.create(title: "testing3", body: "test body",user_id: @user.id)
+    @post = @topic.posts.create(title: "testing3", body: "test body",user_id: @user.id )
   end
 
   describe "index posts" do

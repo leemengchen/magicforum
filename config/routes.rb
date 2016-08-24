@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:new, :edit, :create, :update]
   resources :sessions, only: [:new, :create, :destroy]
-  resources :password_resets
+  resources :password_resets, only: [:new, :edit, :update, :create]
 
   post :upvote, to: 'votes#upvote'
   post :downvote, to: 'votes#downvote'

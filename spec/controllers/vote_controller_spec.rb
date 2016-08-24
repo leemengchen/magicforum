@@ -38,6 +38,24 @@ RSpec.describe VotesController, type: :controller do
       expect(Vote.count).to eql(1)
       expect(flash[:success]).to eql("You upvoted.")
     end
+
+    it "should successfully upvote(+ value 1) in a comment if you are an admin" do
+
+      params = {comment_id: @comment.id}
+      post :upvote, xhr: true, params: params, session: {id: @admin.id}
+
+      expect(assigns[:vote].value).to eql(1)
+      expect(flash[:success]).to eql("You upvoted.")
+    end
+
+    it "should successfully upvote(+ value 1) in a comment if you are a user" do
+
+      params = {comment_id: @comment.id}
+      post :upvote, xhr: true, params: params, session: {id: @user.id}
+
+      expect(assigns[:vote].value).to eql(1)
+      expect(flash[:success]).to eql("You upvoted.")
+    end
   end
 
 
@@ -59,6 +77,26 @@ RSpec.describe VotesController, type: :controller do
       expect(Vote.count).to eql(1)
       expect(flash[:danger]).to eql("You downvoted.")
     end
+
+    it "should successfully upvote(- value 1) in a comment if you are an admin" do
+
+      params = {comment_id: @comment.id}
+      post :downvote, xhr: true, params: params, session: {id: @admin.id}
+
+      expect(assigns[:vote].value).to eql(-1)
+      expect(flash[:danger]).to eql("You downvoted.")
+    end
+
+    it "should successfully upvote(- value 1) in a comment if you are a user" do
+
+      params = {comment_id: @comment.id}
+      post :downvote, xhr: true, params: params, session: {id: @user.id}
+
+      expect(assigns[:vote].value).to eql(-1)
+      expect(flash[:danger]).to eql("You downvoted.")
+    end
+
+
   end
 
 end
