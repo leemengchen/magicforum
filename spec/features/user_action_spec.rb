@@ -29,7 +29,7 @@ RSpec.feature "User Navigation", type: :feature ,js: true do
         click_button("Create Topic")
 
         expect(find('.flash-messages .message').text).to eql("You've created a new topic.")
-
+  
       end
 
     scenario "admin edit a topic" do
@@ -45,7 +45,7 @@ RSpec.feature "User Navigation", type: :feature ,js: true do
 
         expect(find('.flash-messages .message').text).to eql("Welcome back admin1")
         expect(page).to have_current_path(root_path)
-        
+
         visit topics_path
 
         click_link('Topic 1111111')
