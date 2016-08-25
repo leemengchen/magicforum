@@ -4,6 +4,7 @@ RSpec.feature "User Navigation", type: :feature ,js: true do
   before(:all) do
     @user = create(:user)
     @admin = create(:user, :admin)
+    @topic = create(:topic)
     # @topic = create(:topic)
   end
 
@@ -29,7 +30,7 @@ RSpec.feature "User Navigation", type: :feature ,js: true do
         click_button("Create Topic")
 
         expect(find('.flash-messages .message').text).to eql("You've created a new topic.")
-  
+
       end
 
     scenario "admin edit a topic" do
@@ -58,6 +59,41 @@ RSpec.feature "User Navigation", type: :feature ,js: true do
         topic = Topic.find_by(title:"Topic123")
 
         expect(topic.title).to eql("Topic123")
+  end
+
+  scenario "user create a topic" do
+
+
+        visit root_path
+
+        click_button('LOGIN')
+
+        fill_in 'user_email_field', with: @user.email
+        fill_in 'user_password_field', with: @user.password
+
+        click_button('Login')
+
+        visit topic_posts_path(@topic)
+
+        fill_in 'post_title_field', with: "Post title 123"
+        fill_in 'post_body_field', with: "Post description 123"
+
+        click_button("Create Post")
+
+        expect(find('.flash-messages .message').text).to eql("You've created a new post!!!")
+
+        visit topic_posts_path(@topic)
+
+        click_link('Post title 123')
+        click_button("Edit This Post")
+
+        fill_in  "topic_title_field", with:"Post title 123456"
+
+        click_button("Update Post")
+
+        post = Post.find_by(title:"Post title 123456")
+
+        expect(post.title).to eql("Post title 123456")
   end
 
 
