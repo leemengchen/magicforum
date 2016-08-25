@@ -9,4 +9,14 @@ class Topic < ApplicationRecord
   validates :user_id, presence: true
   mount_uploader :image, ImageUploader
   belongs_to :user
+
+  before_save :update_slug
+
+  private
+
+  def update_slug
+    if self.slug.gsub("","-") != title.gsub(" ","-")
+      self.slug = title.gsub(" ","-").downcase
+    end
+  end
 end

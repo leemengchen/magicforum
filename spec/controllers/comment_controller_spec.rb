@@ -3,13 +3,13 @@ require 'rails_helper'
  RSpec.describe CommentsController, type: :controller do
 
    before(:all) do
-    @admin = User.create(username: "admin01", email: "admin@gmail.com", password: "admin", role: 2)
-    @unauthorized_user = User.create(username:"user01", email:"user@hotmail.com", password:"12345", role: 0 )
-    @user = User.create(username: "normal user", email: "normaluser@gmail.com", password: "12345", role: 0)
-    @moderator = User.create(username: "moderator01", email: "moderator01@gmail.com", password: "12345", role: 2)
-    @topic = Topic.create(title: "testing2", description: "test description", user_id: @admin.id)
-    @post = @topic.posts.create(title: "testing3", body: "test body",user_id: @user.id)
-    @comment = @post.comments.create(body:"testing4", user_id: @user.id)
+    @admin = create(:user, :admin)
+    @unauthorized_user =  create(:user, :sequenced_email, :sequenced_username)
+    @user = create(:user, :sequenced_email,:sequenced_username)
+    @moderator = create(:user, :moderator)
+    @topic = create(:topic, user_id: @admin.id)
+    @post = create(:post, topic_id: @topic.id, user_id: @user.id)
+    @comment = create(:comment, post_id: @post.id, user_id: @user.id)
   end
 
   describe "index comments" do
@@ -34,15 +34,15 @@ require 'rails_helper'
     end
 
 
-    it "should render create only you are logged in with admin user" do
+    it "should allow admins to create  you are logged in with admin " do
 
       params = { topic_id: @topic.slug, post_id: @post.slug, comment:{body: "test body" } }
       post :create, xhr: true, params: params, session: {id: @admin.id}
 
 
 
-      new_comment = Comment.find_by(body:"testing4")
-      expect(new_comment.body).to eql("testing4")
+      new_comment = Comment.find_by(body:"test body")
+      expect(new_comment.body).to eql("test body")
       expect(Comment.count).to eql(2)
       expect(flash[:success]).to eql("You've created a new comment.")
     end
@@ -53,8 +53,8 @@ require 'rails_helper'
 
 
 
-      new_comment = Comment.find_by(body:"testing4")
-      expect(new_comment.body).to eql("testing4")
+      new_comment = Comment.find_by(body:"test body")
+      expect(new_comment.body).to eql("test body")
       expect(Comment.count).to eql(2)
       expect(flash[:success]).to eql("You've created a new comment.")
     end

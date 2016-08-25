@@ -3,9 +3,10 @@ require 'rails_helper'
  RSpec.describe TopicsController, type: :controller do
 
    before(:all) do
-    @admin = User.create(username: "admin01", email: "admin@gmail.com", password: "admin", role: 2)
-    @unauthorized_user = User.create(username:"user01", email:"user@hotmail.com", password:"12345", role: 0 )
-    @topic = Topic.create(title: "testing2", description: "test description", user_id: @admin.id)
+    @admin = create(:user, :admin)
+    @unauthorized_user = create(:user)
+    @topic = create(:topic)
+    # @topic2 = create(:topic , :sequence_title , :sequence_description)
   end
 
   describe "index topics" do
@@ -126,6 +127,7 @@ require 'rails_helper'
 
     it "should redirect if not logged in" do
 
+      @topic = Topic.first
 
       params = { id: @topic.slug }
       delete :destroy, params: params
@@ -136,6 +138,8 @@ require 'rails_helper'
 
     it "should redirect if user unauthorized" do
 
+      @topic = Topic.first
+
       params = { id: @topic.slug}
       delete :destroy, params: params, session: {id: @unauthorized_user.id}
 
@@ -145,6 +149,8 @@ require 'rails_helper'
 
     it "should render destroy only if you are admin" do
 
+      @topic = Topic.first
+      
       params = {id: @topic.slug}
       delete :destroy, params: params, session: {id: @admin.id}
 

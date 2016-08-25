@@ -3,12 +3,12 @@ require 'rails_helper'
  RSpec.describe PostsController, type: :controller do
 
    before(:all) do
-    @admin = User.create(username: "admin01", email: "admin@gmail.com", password: "admin", role: 2)
-    @unauthorized_user = User.create(username:"user01", email:"user@hotmail.com", password:"12345", role: 0 )
-    @user = User.create(username: "normal user", email: "normaluser@gmail.com", password: "12345", role: 0)
-    @moderator = User.create(username: "moderator01", email: "moderator01@gmail.com", password: "12345", role: 2)
-    @topic = Topic.create(title: "testing2", description: "test description", user_id: @admin.id)
-    @post = @topic.posts.create(title: "testing3", body: "test body",user_id: @user.id )
+    @admin = create(:user, :admin)
+    @unauthorized_user = create(:user, :sequenced_email,:sequenced_username)
+    @user = create(:user, :sequenced_email,:sequenced_username)
+    @moderator = create(:user, :moderator)
+    @topic = create(:topic, user_id:@admin.id)
+    @post = create(:post, topic_id:@topic.id, user_id:@user.id)
   end
 
   describe "index posts" do
@@ -81,11 +81,11 @@ require 'rails_helper'
 
     it "should render edit only if you are the user who created this post" do
       params = { topic_id: @topic.slug, id: @post.slug}
-      get :edit, params: params, session: {id: @user.id}
+      get :edit, params: params, session: {id: @post.user.id}
 
       current_user = subject.send(:current_user)
       expect(current_user).to be_present
-      expect(current_user).to eql(@user)
+      expect(current_user).to eql(@post.user)
       expect(subject).to render_template(:edit)
     end
 
@@ -118,16 +118,16 @@ require 'rails_helper'
       expect(flash[:danger]).to eql("You're not authorized")
     end
 
-    it "should render update only if you are the user who created this post" do
+    it "should update only if you are the user who created this post" do
 
       params = {topic_id: @topic.slug, id: @post.slug, post:{ title: "Updated Post Title", body: "Updated Post here!"}}
-      patch :update, params: params, session: {id: @user.id}
+      patch :update, params: params, session: {id: @post.user.id}
 
       @post.reload
 
       current_user = subject.send(:current_user)
       expect(current_user).to be_present
-      expect(current_user).to eql(@user)
+      expect(current_user).to eql(@post.user)
       expect(subject).to redirect_to (topic_posts_path(@topic,@post))
       expect(@post.title).to eql("Updated Post Title")
       expect(@post.body).to eql("Updated Post here!")
@@ -169,13 +169,13 @@ require 'rails_helper'
     it "should render destroy only if you are the user who created this post" do
 
       params = {topic_id:@topic.slug ,id: @post.slug}
-      delete :destroy, params: params, session: {id: @user.id}
+      delete :destroy, params: params, session: {id: @post.user.id}
 
 
       current_user = subject.send(:current_user)
       expect(current_user).to be_present
-      expect(current_user).to eql(@user)
-      expect(subject).to redirect_to (topic_posts_path(@topic))
+      expect(current_user).to eql(@post.user)
+      expect(subject).to redirect_to (topic_posts_path)
     end
 
     it "should render destroy only if you are admin" do
