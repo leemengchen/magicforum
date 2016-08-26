@@ -9,8 +9,8 @@ class Topic < ApplicationRecord
   validates :user_id, presence: true
   mount_uploader :image, ImageUploader
   belongs_to :user
-
   before_save :update_slug
+  validate :image_size
 
   private
 
@@ -19,4 +19,11 @@ class Topic < ApplicationRecord
       self.slug = title.gsub(" ","-").downcase
     end
   end
+
+  def image_size
+   return unless image
+   if image.size > 1.megabyte
+     errors.add(:file, "size is too big. Please make sure it is 1MB or smaller.")
+   end
+ end
 end

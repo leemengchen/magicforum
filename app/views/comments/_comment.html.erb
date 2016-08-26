@@ -17,8 +17,8 @@
     </div>
 
     <div class="votes" >
-      <%= link_to fa_icon("thumbs-up 2x"), upvote_path(comment_id: comment.id), method: :post, remote: true  %>
-      <%= link_to fa_icon("thumbs-down 2x"), downvote_path(comment_id: comment.id), method: :post, remote: true %>
+      <%= link_to fa_icon("thumbs-up 2x"), upvote_path(comment_id: comment.id), method: :post, remote: true, class: "upvote"  %>
+      <%= link_to fa_icon("thumbs-down 2x"), downvote_path(comment_id: comment.id), method: :post, remote: true, class: "downvote" %>
       <div class="votes-score">
         <%= comment.total_votes %>
       </div>

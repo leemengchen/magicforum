@@ -1,49 +1,49 @@
 <div class="header">
   <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <%= link_to "Travelling ", root_path %>
-          <!-- <a class="navbar-brand" href="#">MC LEE</a> -->
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-dropdown" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <%= link_to "Travelling ", root_path %>
+        <!-- <a class="navbar-brand" href="#">MC LEE</a> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-dropdown" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
 
-        <div class="collapse navbar-collapse" id="header-dropdown">
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "About", about_path %></li>
-            <li><%= link_to "Topics", topics_path %></li>
+      <div class="collapse navbar-collapse" id="header-dropdown">
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "About", about_path %></li>
+          <li><%= link_to "Topics", topics_path %></li>
 
-                      <% if current_user %>
-            <li>
-              <%= link_to current_user.username, edit_user_path(current_user), class: 'white shadowed link-styling' %>
-            </li>
+          <% if current_user %>
+          <li>
+            <%= link_to current_user.username, edit_user_path(current_user), class: 'white shadowed link-styling' %>
+          </li>
 
-            <li>
-              <%= link_to "Logout", session_path(current_user), method: :delete, class: 'white shadowed link-styling' %>
-            </li>
+          <li>
+            <%= link_to "Logout", session_path(current_user), method: :delete, class: 'white shadowed link-styling' %>
+          </li>
 
           <% else %>
 
-            <li>
-              <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalregister">
-                REGISTER
-              </button>
-            </li>
+          <li>
+            <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalregister">
+              REGISTER
+            </button>
+          </li>
 
-            <li>
-              <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modallogin">
-                LOGIN
-              </button>
-            </li>
+          <li>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modallogin">
+              LOGIN
+            </button>
+          </li>
           <% end %>
 
 
-          </ul>
-        </div>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 </div>

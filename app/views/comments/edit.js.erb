@@ -1,2 +1,6 @@
 $('#comment-form-holder-<%= @comment.id %>').html("<%=j render partial: 'comment_update_form', locals: { comment: @comment, post: @post, topic: @topic } %>")
 $('#comment-container-<%= @comment.id %>').html("")
+
+$('.cancel-button').on('click', function() {
+ $('#comment-update-form').replaceWith("<%=j render partial: 'comment', locals: { comment: @comment, post: @post, topic: @topic }%>")
+})

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "User Navigation", type: :feature ,js: true do
+RSpec.feature "User Action", type: :feature ,js: true do
   before(:all) do
     @user = create(:user, :sequenced_email, :sequenced_username)
     @admin = create(:user, :admin)
@@ -100,38 +100,39 @@ RSpec.feature "User Navigation", type: :feature ,js: true do
   scenario "user create a Comment" do
 
 
-        visit root_path
+    visit root_path
 
-        click_button('LOGIN')
+    click_button('LOGIN')
 
-        fill_in 'user_email_field', with: @user.email
-        fill_in 'user_password_field', with: @user.password
+    fill_in 'user_email_field', with: @user.email
+    fill_in 'user_password_field', with: @user.password
 
-        click_button('Login')
+    click_button('Login')
 
-        visit topic_post_comments_path(@topic, @post)
+    visit topic_post_comments_path(@topic, @post)
 
-        fill_in 'comment_body_field', with: "Comment body 123"
+    fill_in 'comment_body_field', with: "Comment body 123"
 
-        click_button("Create Comment")
+    click_button("Create Comment")
 
-        expect(find('.flash-messages .message').text).to eql("You've created a new comment.")
+    expect(find('.flash-messages .message').text).to eql("You've created a new comment.")
 
-        visit topic_post_comments_path(@topic,@post)
+    visit topic_post_comments_path(@topic,@post)
 
-        click_link("Edit Comment")
+    click_link("Edit Comment")
 
-        within(".comment-update-form") do
-          fill_in  "comment_body_field", with:"Comment body 123456"
-        end
+    within(".comment-update-form") do
+      fill_in  "comment_body_field", with:"Comment body 123456"
+    end
 
-        click_button("Update Comment")
+    click_button("Update Comment")
 
-        comment = Comment.find_by(body:"Comment body 123456")
-  #
-  #       expect(find('.flash-messages .message').text).to eql("You're successfullly update your comment!")
-        expect(comment.body).to eql("Comment body 123456")
-        expect(page).to have_content("Comment body 123456")
+    sleep(1)
+
+    comment = Comment.find_by(body:"Comment body 123456")
+    # expect(find('.flash-messages .message').text).to eql("You're successfullly update your comment!")
+    expect(comment.body).to eql("Comment body 123456")
+    expect(page).to have_content("Comment body 123456")
   end
 
 

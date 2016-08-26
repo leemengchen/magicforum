@@ -21,7 +21,7 @@ RSpec.feature "User Navigation", type: :feature ,js: true do
 
     visit root_path
 
-    click_link("bob")
+    click_link(@user.username)
 
     fill_in "user_username_field", with: "updatedbob"
 

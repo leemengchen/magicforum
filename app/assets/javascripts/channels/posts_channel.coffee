@@ -1,20 +1,20 @@
 postsChannelFunctions = () ->
 
-  checkMe = (comment_id) ->
-    if $('meta[name=admin]').length < 1
+  checkMe = (comment_id, record_username) ->
+    if ($('meta[name=admin]').length < 1 and $("meta[user=#{record_username}]").length < 1)
       $(".comment-child[data-id=#{comment_id}] .control-panel").remove()
 
   createComment = (data) ->
     console.log(data)
     if $('.comments-parent').data().id == data.post.id
       $('#comments').append(data.partial)
-      checkMe(data.comment.id)
+      checkMe(data.comment.id, data.username)
 
   updateComment =  (data) ->
     console.log(data)
     if $('.comments-parent').data().id == data.post.id
       $(".comment-child[data-id=#{data.comment.id}] ").replaceWith(data.partial)
-      checkMe(data.comment.id)
+      checkMe(data.comment.id, data.username)
 
   destroyComment = (data) ->
     console.log(data)
